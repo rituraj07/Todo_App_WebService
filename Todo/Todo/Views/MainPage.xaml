@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Todo"
+             x:Class="Todo.MainPage"
+             xmlns:viewModels="clr-namespace:Todo.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Button BackgroundColor="Blue" TextColor="White" Text="Add Tod" Clicked="Addtodo" />
+        <ListView HasUnevenRows="True" IsRefreshing="{Binding IsRefreshing}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Todos}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <StackLayout Margin="20, 0, 0,0 " HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <Label FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Title}"/>
+                                <Label Margin="15, 0, 0,0 "  FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding IsDone}"/>
+                            </StackLayout>
+                            <Label Margin="20, 0, 0,0 " TextColor="#5c74d3" Opacity="1" Text="{Binding UpdatedAt}"/>
+                            <Button BackgroundColor="#e35f57 " TextColor="White" WidthRequest="200" 
+            HorizontalOptions="Center" Text="Delete" Clicked="Remove"/>
+                        </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    </StackLayout>
+</ContentPage>
